@@ -1,7 +1,9 @@
+import HeroSection from "@/components/home/HeroSection";
+
 export default function Home() {
   return (
     <>
-      <h3 className="text-3xl font-bold underline">hello</h3>
+      <HeroSection/>
     </>
   );
 }
