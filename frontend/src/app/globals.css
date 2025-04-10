@@ -34,6 +34,38 @@
     background-position: center bottom;
   }
 }
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes textInFromRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-slide-in-from-right {
+    animation: slideInFromRight 0.8s ease-out forwards;
+  }
+  .animate-text-in-from-right {
+    animation: textInFromRight 0.8s ease-out forwards;
+  }
+}
+
+
 
 
 
@@ -79,6 +111,91 @@ body {
     }
   }
 }
+
+
+/* Add this to src/styles/globals.css */
+.albumsSwiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.albumsSwiper .swiper-slide {
+  background: transparent;
+  width: 450px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.albumsSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* General non-active slides */
+.albumsSwiper .swiper-slide {
+  transition-duration: 0ms !important;
+  z-index: 0 !important;
+  transform: translate3d(0, 0, -100px) rotateY(0deg) !important;
+}
+
+/* Left side (prev) — tilt left */
+.albumsSwiper .swiper-slide-prev {
+  transform: translate3d(-100px, 0, -100px) rotateY(50deg) !important;
+}
+
+/* Right side (next) — tilt right */
+.albumsSwiper .swiper-slide-next {
+  transform: translate3d(100px, 0, -100px) rotateY(-50deg) !important;
+}
+
+/* Center active slide */
+.albumsSwiper .swiper-slide-active {
+  transform: translate3d(0, 0, 0) rotateY(0deg) !important;
+  z-index: 1 !important;
+}
+.swiper-slide {
+  transition: transform 0.4s ease-in-out;
+}
+
+/* 3D tilt effect for active hovered slide */
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.group:hover .group-hover\\:-rotate-x-6 {
+  transform: rotateX(6deg);
+}
+
+@keyframes ping-once {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+.animate-ping-once {
+  animation: ping-once 0.6s ease-out;
+}/* Tailwind base already handles much, just minor touches */
+button:focus {
+  outline: none;
+}
+
+
+
+
 
 @layer utilities {
   .text-white-custom { color: rgb(255, 255, 255); }
